@@ -1,0 +1,35 @@
+header {
+  background: #efefef;
+  padding: 18px 0;
+  font-size: 14px;
+  ul{
+    padding: 0;
+    li{
+      color: #9d9d9d;
+      display: inline-block;
+      margin-right: 10px;
+      position: relative;
+      &:last-child:after{
+        background: none;
+      }
+      &:after{
+        content: "";
+        position: absolute;
+        height: 13px;
+        right: -6px;
+        width: 2px;
+        top: 2px;
+        background: #9d9d9d;  
+
+      }
+      a{
+        &.active{
+          font-weight: bold;
+        }
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+    
+  }
+}

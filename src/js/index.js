@@ -1,6 +1,7 @@
 require('../styles/styles.scss');
 require('../index.html');
 
+require('./popup.js');
 
 
 function tvshow() {
@@ -16,7 +17,7 @@ function tvshow() {
 
     // implement debounce for taxing work
     const efficientInput = debounce(function() {
-      console.log(document.querySelector('input[name="tvshow"]').value);
+      // console.log(document.querySelector('input[name="tvshow"]').value);
 
       //get input field value
       let term = document.querySelector('input[name="tvshow"]').value
@@ -52,17 +53,17 @@ function tvshow() {
 
   //handle error message
   this.error = function() {
-    console.log("error");
+    // console.log("error");
     document.querySelector(".search-container").classList.add("error")
   }
 
   //on selected tvshow
   this.onSelectShow = function() {
-    console.log(this);
+    // console.log(this);
     document.querySelector("#single_tvshow_container").classList.remove("hidden");
     // document.querySelector("input[name=tvshow").value = document.querySelector("#single_tvshow_name").innerHTML;
-    console.log("select tvshow");
-    console.log(this.getAttribute("data-showID"));
+    // console.log("select tvshow");
+    // console.log(this.getAttribute("data-showID"));
 
     //retrieve ID of selected show
     getShowID = this.getAttribute("data-showID");
@@ -74,11 +75,13 @@ function tvshow() {
   //on selected tv show season
   this.onSelectSeason = function(event) {
     let seasonEpisodeDates = [];
+    let seasonEpisodeSummary = [];
+    let seasonEpisodeName = [];
 
-    console.log("select season");
+    // console.log("select season");
     document.querySelector(".loading").classList.remove("hidden");
 
-    console.log(event);
+    // console.log(event);
 
     //select tag element: season number
     const getShowSeasonNumber_select = document.getElementById("selected_tvshow_seasons");
@@ -89,7 +92,7 @@ function tvshow() {
     //get ID of the selected show
     getShowID = getShowSeasonNumber_select.options[getShowSeasonNumber_select.selectedIndex].getAttribute("data-showID");
 
-    console.log(getShowSeasonNumber_value);
+    // console.log(getShowSeasonNumber_value);
 
     //get total episodes count of selected season
     let episodes_count = getShowSeasonNumber_select.options[getShowSeasonNumber_select.selectedIndex].getAttribute("data-total-episodes");
@@ -97,19 +100,24 @@ function tvshow() {
     // implement debounce for taxing work
     const selectEfficient = debounce(function() {
       //loop through each episodes of selected season
+      var episode = new Object();
+
       for (var i = 1; i <= episodes_count; i++) {
 
         //query get each episode number info
         let a = getData(`/shows?id=${getShowID}&seasons=GET&season_number=${getShowSeasonNumber_value}&episode_number=${i}`);
-        console.log(a)
+        // console.log(a)
 
         //get the episodes air date and push to array containing all episodes air date of selected season
         seasonEpisodeDates.push(Date.parse(a.airdate));
+        seasonEpisodeName.push(a.name);
+        seasonEpisodeSummary.push(a.summary);
       }
-      console.log(seasonEpisodeDates);
+      // console.log(seasonEpisodeDates);
+
       seasonEpisodeDates.forEach((date, index) => {
 
-        console.log(Math.floor((date - seasonEpisodeDates[0]) / (seasonEpisodeDates[seasonEpisodeDates.length - 1] - seasonEpisodeDates[0]) * 100));
+        // console.log(Math.floor((date - seasonEpisodeDates[0]) / (seasonEpisodeDates[seasonEpisodeDates.length - 1] - seasonEpisodeDates[0]) * 100));
 
         //reveal timeline after load
         document.querySelector(".loading").classList.add("hidden");
@@ -118,6 +126,14 @@ function tvshow() {
         //create point in timeline
         const point = document.createElement("div");
         point.classList.add("timeline_points");
+
+
+        let point_details = `${seasonEpisodeName[index]}${seasonEpisodeSummary[index]}`;
+
+        point.setAttribute("data-toggle", "popover");
+        point.setAttribute("data-content", point_details);
+        point.setAttribute("data-placement", "top");
+      
 
         //add class for last element
         if (index === seasonEpisodeDates.length - 1) {
@@ -132,10 +148,12 @@ function tvshow() {
 
       });
 
+          $('[data-toggle="popover"]').popover();   
 
     }, 250);
 
     selectEfficient();
+
   }
 }
 
@@ -186,11 +204,11 @@ const queryShows = (term) => {
 
 const getSingleShow = (id) => {
   const single_show = getData(`/shows?id=${id}`);
-  console.log(single_show);
+  // console.log(single_show);
 
   const y = `
         <div>
-          <div class="single_tvshow_name" >${single_show.name}</div>
+          <div class="single_tvshow_name" ><strong>${single_show.name}</strong></div>
           <div class="single_tvshow_summary" >${single_show.summary}</div>
         </div>
 
@@ -206,7 +224,7 @@ const getSingleShow = (id) => {
 
     single_show_seasons.forEach(season => {
 
-      console.log(season);
+      // console.log(season);
       const z = `<option data-total-episodes=${season.episodeOrder} data-showID=${id} data-season-number=${season.number}>Season ${season.number}</option>`;
 
       const selected_tvshow_seasons = document.getElementById('selected_tvshow_seasons');
