@@ -1,0 +1,202 @@
+body{
+  margin:0;
+  font-family: 'Lato', sans-serif;
+}
+
+.container{
+  padding: 0 30px;
+}
+
+header {
+  background: #efefef;
+  padding: 18px 0;
+  font-size: 14px;
+  ul{
+    padding: 0;
+    li{
+      color: #9d9d9d;
+      display: inline-block;
+      margin-right: 10px;
+      position: relative;
+      &:last-child:after{
+        background: none;
+      }
+      &:after{
+        content: "";
+        position: absolute;
+        height: 13px;
+        right: -6px;
+        width: 2px;
+        top: 2px;
+        background: #9d9d9d;  
+
+      }
+      a{
+        &.active{
+          font-weight: bold;
+        }
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+    
+  }
+}
+
+main{
+  padding-top: 35px;
+}
+
+img#logo {
+  top: 81px;
+  position: absolute;
+  right: 0;
+}
+
+.search-container, #single_tvshow_container{
+  max-width: 750px;
+  width: 100%;
+  label{
+    display: block;
+    margin-bottom: 10px;
+    
+  }
+  input{
+  border: 1px solid #dededf;
+    width: 100%;
+    height: 45px;
+    padding: 0 15px;
+  }
+
+  #clear_search{
+    float: right;
+    background: #fff;
+    border: 2px solid red;
+    width: 100px;
+    height: 35px;
+    margin-top: 10px;
+  }
+
+  .search_tvshow {
+    position: relative;
+    i{
+      color: #9d9d9d;
+      position: absolute;
+      bottom: 14px;
+      right: 15px;
+    }
+  }
+}
+
+div#single_tvshow_container {
+  float: left;
+  font-size: 14px;
+  margin-top: 30px;
+  line-height: 25px;
+  select#selected_tvshow_seasons {
+    border: 1px solid #cecece;
+    padding: 10px 0;
+    width: 100%;
+    max-width: 200px;
+    border-radius: 3px;
+  }
+  #episodes_timeline {
+    width: 100%;
+    border: 15px solid #efefef;
+    border-radius: 18px;
+    height: 7px;
+    position: relative;
+    margin-top: 100px;
+    .episode_label{
+      position: absolute;
+      top: 44px;
+      width: 100px;
+      text-transform: capitalize;
+      left: -10px;
+    }
+  }
+  
+}
+
+.timeline_block{
+  position: relative;
+  .loading {
+    width: 110%;
+    text-align: center;
+    top: -81px;
+    position: absolute;
+    left: -19px;
+    background: #fff;
+ }
+}
+
+
+
+.tvshow_option{
+  color: #9d9d9d;
+  font-size: 14px;
+  &:first-child{
+    .show-detail{
+       background-color:#f8f8f8;
+    }
+   
+    font-weight: bold;
+  }
+  .show-detail{
+    box-sizing: border-box;
+    cursor: pointer;
+    float: left;
+    width: 33.333%;
+    padding: 5px 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    &.rating {
+      text-align: right;
+    }
+  }
+}
+
+div#list_shows {
+  float: left;
+  width: 100%;
+  max-width: 748px;
+  border: 1px solid #dededf;
+  border-radius: 5px;
+  border-top: none;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+.hidden{
+  display: none;
+}
+
+.timeline_points{
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  top: -18px;
+  background: red;
+  border-radius: 50%;
+  border: 5px solid #efefef;
+}
+.timeline_point_last{
+  margin-left: -20px;
+}
+.error_message{
+  display: none;
+}
+
+.error{
+  color: red;
+  label {
+    float: left;
+  }
+  .error_message{
+    display: block!important;
+    padding-left: 30px;
+    float: left;
+  }
+  input{
+    border-left: 6px solid red;
+  }
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <ul>
+        <li>
+          <a class="active" href="">Home</a>
+        </li>
+        <li>
+          <a href="">SEARCH TV SHOW</a>
+        </li>
+
+      </ul>
+    </div>
+    <img id="logo" src="assets/images/logo.png">
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="row h-100">
+        <div class="col-xs-12">
+
+          <!-- SEARCH COMPONENT -->
+          <div class="search-container">
+            <label>Search TV show</label> <span class="error_message"> Please enter valid title</span>
+            <div class="main-content">
+              <div class="search_tvshow">
+                <input type="text" name="tvshow" placeholder="Please enter TV show title">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <i class="fa fa-times clear hidden" aria-hidden="true"></i>
+              </div>
+
+              <button class="clear" id="clear_search" name="clear">clear</button>
+
+              <div id="list_shows" class="hidden"></div>
+            </div>
+          </div>
+
+          <!-- SEARCH DETAIL COMPONENT -->
+          <div id="single_tvshow_container" class="hidden">
+            <div id="selected_tvshow"></div>
+            <label>Seasons</label>
+            <select id="selected_tvshow_seasons">
+              <option>select season</option>
+            </select>
+            <div class="timeline_block">
+              <div id="episodes_timeline" class="hidden"></div>
+              <div class="loading hidden"><img src="assets/images/loading.gif"></div>
+            </div>
+
+          </div>
+
+        </div><!-- column -->
+      </div><!-- row  -->
+    </div><!-- container -->
+  </main>
+
+
+  <footer></footer>
+</body>
+
+</html>
