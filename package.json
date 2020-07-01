@@ -45,7 +45,7 @@
   "dependencies": {
     "basic-auth": "^2.0.0",
     "hammerjs": "^2.0.8",
-    "jquery": "^2.2.4",
+    "jquery": "^3.5.0",
     "jquery-touchswipe": "^1.6.15",
     "php-loader": "^0.2.0"
   }
