@@ -244,7 +244,13 @@ function getData(url) {
 }
 
 
+//input character validation
+document.querySelector("input[name=tvshow]").onkeypress = function(e) {
+  var k;
+  document.all ? k = e.keyCode : k = e.which;
+  return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32);
+};
+
 document.querySelector("input[name=tvshow]").addEventListener("keyup", tvshow.inputChange);
-document.getElementById("clear_search").addEventListener("keyup", tvshow.inputChange);
 document.querySelectorAll(".clear").forEach(element => element.addEventListener("click", tvshow.clearSearch));
 document.querySelector("#selected_tvshow_seasons").addEventListener("change", tvshow.onSelectSeason);
